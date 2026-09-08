@@ -1,0 +1,16 @@
+{
+  "name": "cfbox-deployer",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "wrangler pages dev public",
+    "build:pages": "wrangler pages functions build functions --outfile public/_worker.js",
+    "deploy:pages": "npm run build:pages && wrangler pages deploy public --project-name=cfbox-deployer --commit-dirty=true",
+    "check": "node --check server.mjs && node --check functions/api/[[path]].js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.0"
+  }
+}

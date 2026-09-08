@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CFBox Deployer v5 Pages</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main>
+  <h1>CFBox Deployer v5 Pages</h1>
+  <p>Worker / Pages 一键部署、UUID、KV Binding、自定义域名</p>
+
+  <section>
+    <label>
+      Cloudflare API Token
+      <input id="apiToken" type="password">
+    </label>
+    <button id="loadBtn">验证并加载账户</button>
+    <span id="status"></span>
+  </section>
+
+  <section class="grid">
+    <label>
+      Account
+      <select id="account">
+        <option>先加载账户</option>
+      </select>
+    </label>
+
+    <label>
+      部署模式
+      <select id="deployMode">
+        <option value="create">新建</option>
+        <option value="update">更新</option>
+      </select>
+    </label>
+
+    <label>
+      部署类型
+      <select id="deployType">
+        <option value="worker">Worker</option>
+        <option value="pages">Pages</option>
+      </select>
+    </label>
+
+    <label>
+      源码
+      <select id="sourceMode">
+        <option value="encoded">混淆版</option>
+        <option value="plain">明文版</option>
+      </select>
+    </label>
+
+    <label>
+      项目名称
+      <div class="row"><input id="projectName" readonly placeholder="自动生成"><button type="button" id="generateName">重新生成</button></div>
+    </label>
+
+    <label>
+      UUID
+      <input id="uuid" placeholder="留空自动生成">
+    </label>
+
+    <label>
+      KV
+      <select id="kv">
+        <option value="">自动创建 KV</option>
+      </select>
+    </label>
+
+    <label>
+      KV 名称
+      <input id="kvTitle" placeholder="留空自动使用项目名-kv">
+    </label>
+
+    <label>
+      自定义域名 Zone
+      <div class="row"><select id="customDomain"><option value="">不绑定自定义域名</option></select><button type="button" id="loadDomains">获取绑定域名</button></div>
+      <small>项目名称只使用小写字母和数字，不包含 “-”。选择 Zone 后自动生成“项目名称.Zone”，避免根域名 Route 冲突。</small>
+    </label>
+
+    <label>
+      最终自定义域名
+      <input id="generatedDomain" readonly placeholder="自动生成：项目名称.选择的Zone">
+    </label>
+  </section>
+
+  <button id="resourceBtn">刷新资源</button>
+  <button id="deployBtn">🚀 开始部署</button>
+
+  <section>
+    <h2>日志</h2>
+    <pre id="logs">等待操作...</pre>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
